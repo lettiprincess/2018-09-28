@@ -8,17 +8,32 @@ namespace BejegyzesProject
 {
     class Bejegyzes
     {
-        public Bejegyzes(string szerzo, string tartalom)
-        {
-
-        }
-
+        /// <summary>
+        /// Változók felvevése
+        /// </summary>
         public string szerzo;
         public string tartalom;
-        public int lajkok;
+        public int lajkok = 0;
         public DateTime letrejott;
         public DateTime szerkesztett;
 
+        /// <summary>
+        /// Az a feladat elkészítése
+        /// </summary>
+        /// <param name="szerzo"></param>
+        /// <param name="tartalom"></param>
+        /// <param name="lajkok"></param>
+        /// <param name="letrejott"></param>
+        /// <param name="szerkesztett"></param>
+        public Bejegyzes(string szerzo, string tartalom,int lajkok,DateTime letrejott,DateTime szerkesztett)
+        {
+            this.szerzo = szerzo;
+            this.tartalom = tartalom;
+            this.lajkok = lajkok;
+            this.letrejott = letrejott;
+            this.szerkesztett = szerkesztett;
+        }
+        
         public string Szerzo
         {
             get
@@ -68,6 +83,16 @@ namespace BejegyzesProject
 
         public void Like() {
              lajkok++;
+        }
+
+        /// <summary>
+        /// A b feladat elkészítése
+        /// </summary>
+        public string Kiir()
+        {
+            string s;
+            s = string.Format(szerzo + " - " + lajkok + " - " + letrejott + "\nSzerkesztve: " + szerkesztett + "\n" + tartalom);
+            return s;
         }
     }
 }
