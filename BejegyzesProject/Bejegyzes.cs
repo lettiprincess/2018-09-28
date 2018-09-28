@@ -25,13 +25,14 @@ namespace BejegyzesProject
         /// <param name="lajkok"></param>
         /// <param name="letrejott"></param>
         /// <param name="szerkesztett"></param>
-        public Bejegyzes(string szerzo, string tartalom,int lajkok,DateTime letrejott,DateTime szerkesztett)
+        /// 
+        public Bejegyzes(string szerzo, string tartalom,int lajkok)
         {
             this.szerzo = szerzo;
             this.tartalom = tartalom;
             this.lajkok = lajkok;
-            this.letrejott = letrejott;
-            this.szerkesztett = szerkesztett;
+            this.letrejott = DateTime.Now;
+            this.szerkesztett = this.letrejott;
         }
         
         public string Szerzo
@@ -69,7 +70,7 @@ namespace BejegyzesProject
         {
             get
             {
-                return DateTime.Now;
+                return letrejott;
             }
         }
 
@@ -77,7 +78,7 @@ namespace BejegyzesProject
         {
             get
             {
-                return DateTime.Now;
+                return szerkesztett;
             }
         }
 
@@ -91,7 +92,7 @@ namespace BejegyzesProject
         public string Kiir()
         {
             string s;
-            s = string.Format(szerzo + " - " + lajkok + " - " + letrejott + "\nSzerkesztve: " + szerkesztett + "\n" + tartalom);
+            s = string.Format(szerzo + " - " + lajkok + " - " + letrejott.ToString() + "\nSzerkesztve: " + szerkesztett.ToString() + "\n" + tartalom);
             return s;
         }
     }
