@@ -27,6 +27,7 @@ namespace BejegyzesProject
                 Console.WriteLine("Kérem adja meg a bejegyzést: ");
                 string tartalmak = Console.ReadLine();
 
+
                 bejegyzesek.Add(new Bejegyzes(nevek,tartalmak,rnd.Next(bejegyzesSzam*20)));
                 
             }
@@ -43,6 +44,63 @@ namespace BejegyzesProject
             {
                 Console.WriteLine(bejegyzesek[i].Kiir());
             }
+
+            //Maximum lájk kiválasztása
+            int max = 0;
+            for (int i = 0; i < bejegyzesek.Count; i++)
+            {
+                if (bejegyzesek[i].Lajkok > max)
+                {
+                    max = bejegyzesek[i].Lajkok;
+                }
+            }
+            Console.WriteLine("A legtöbb lájk {0} volt.",max);
+
+            //35-nél több lájkot kapottak
+            int db = 0;
+            for (int i = 0; i < bejegyzesek.Count; i++)
+            {
+                if (bejegyzesek[i].Lajkok > 35)
+                {
+                    db++;
+                }
+            }
+            Console.WriteLine("{0} bejegyzés volt ami 35 lájknál többet kapott.",db);
+
+            //15-nél kevesebb lájkot kapottak
+            int DB = 0;
+            for (int i = 0; i < bejegyzesek.Count; i++)
+            {
+                if (bejegyzesek[i].Lajkok < 15)
+                {
+                    DB++;
+                }
+            }
+            Console.WriteLine("{0} bejegyzés volt ami 15 lájknál kevesebbet kapott.", DB);
+
+            //Rendezés
+            
+            for (int i = 0; i < bejegyzesek.Count; i++)
+            {
+                //Maximum lájk kiválasztása
+                int max1 = i;
+                for (int j = i + 1; j < bejegyzesek.Count; j++)
+                {
+                    if (bejegyzesek[j].Lajkok > bejegyzesek[max1].Lajkok)
+                    {
+                        max1 = j;
+                    }
+                }
+
+                // Csere
+                Bejegyzes tmp = bejegyzesek[max1];
+                bejegyzesek[max1] = bejegyzesek[i];
+                bejegyzesek[i] = tmp;
+
+                Console.WriteLine(bejegyzesek[i].Kiir());
+            }
+
+            
 
             Console.ReadLine();
         }
